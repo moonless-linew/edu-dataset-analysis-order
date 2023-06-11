@@ -54,6 +54,23 @@ def laptop_by_price(count, data_frame, reverse=False):
     return out
 
 
+def count_of_laptops(param, data_frame):
+    """
+    Функция для определения количества ноутбуков по параметру
+
+    :param param: Любой параметр, кроме ScreenResolution, Cpu, Gpu
+    :param data_frame: Таблица
+    :return: График на экран, график в output
+    """
+    plt.figure(figsize=(15, 8))
+    plt.hist(data_frame[param], color="r")
+    plt.xlabel(param, fontsize=16)
+    plt.ylabel("Количество ноутбуков", fontsize=16)
+    plt.title(f"Гистограмма ноутбуков по {param}", fontsize=18)
+    plt.savefig("../output/hist.png")
+    plt.show()
+
+
 def average_bar(key, number, data_frame):
     """
     Функция для построения графика среднего
