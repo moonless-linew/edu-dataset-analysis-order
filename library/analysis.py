@@ -29,6 +29,31 @@ def top_by_rating(count, data_frame, reverse=False):
     return out
 
 
+def laptop_by_price(count, data_frame, reverse=False):
+    """
+    Функция для определения самых дорогих
+    и дешевых ноутбуков
+
+    :param count: Количество в топе
+    :param data_frame: Таблица
+    :param reverse: В каком порядке отсортирован топ
+    :return out: Словарь ноутбуков
+    """
+    df_sorted = data_frame.sort_values(["Price_euros", "Company"],
+                                       ascending=[reverse, True]).head(count)
+    df_sorted = df_sorted[["Company", "TypeName", "Memory", "OpSys", "Rating", "Price_euros"]]
+
+    out = []
+    sorted_values_list = df_sorted.values.tolist()
+    keys = df_sorted.keys()
+    for i in range(len(sorted_values_list)):
+        dict_of_vals = {}
+        for j in range(len(keys)):
+            dict_of_vals[keys[j]] = sorted_values_list[i][j]
+        out.append(dict_of_vals)
+    return out
+
+
 def average_bar(key, number, data_frame):
     """
     Функция для построения графика среднего
