@@ -2,7 +2,6 @@
 Файл с функциями анализа
 """
 import matplotlib.pyplot as plt
-import pandas as pd
 
 
 def top_by_rating(count, data_frame, reverse=False):
@@ -63,7 +62,7 @@ def count_of_laptops(param, data_frame):
     :return: График на экран, график в output
     """
     plt.figure(figsize=(15, 8))
-    plt.hist(data_frame[param], color="r")
+    plt.hist(data_frame[param])
     plt.xlabel(param, fontsize=16)
     plt.ylabel("Количество ноутбуков", fontsize=16)
     plt.title(f"Гистограмма ноутбуков по {param}", fontsize=18)
@@ -83,7 +82,7 @@ def average_bar(key, number, data_frame):
     """
     df_graph = data_frame.groupby(key, as_index=False)[number].mean()
     plt.figure(figsize=(15, 8))
-    plt.bar(df_graph[key], df_graph[number], color="r")
+    plt.bar(df_graph[key], df_graph[number])
 
     plt.xlabel(key, fontsize=16)
     plt.xticks(rotation=45)
@@ -106,7 +105,7 @@ def prices_of_company(company, data_frame):
     df_graph = df_sorted.groupby("Product", as_index=False)["Price_euros"].mean()
 
     plt.figure(figsize=(15, 8))
-    plt.bar(df_graph["Product"], df_graph["Price_euros"], color="r")
+    plt.bar(df_graph["Product"], df_graph["Price_euros"])
 
     plt.xlabel("Product", fontsize=16)
     plt.xticks(rotation=90)
