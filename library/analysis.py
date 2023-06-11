@@ -98,3 +98,31 @@ def prices_of_company(company, data_frame):
 
     plt.savefig("../output/price_of_company.png")
     plt.show()
+
+
+def corr_matrix(data_frame):
+    """
+    Функция для построения матрицы корреляций
+
+    :param data_frame: Таблица
+    :return: Матрица корреляций на экран, матрица корреляций в output
+    """
+    corr = data_frame.corr()
+    fig, ax = plt.subplots(figsize=(11, 9))
+    im = ax.imshow(corr, interpolation='nearest')
+    fig.colorbar(im, orientation='vertical', fraction=0.05)
+
+    plt.xticks(range(data_frame.select_dtypes(['number']).shape[1]),
+               data_frame.select_dtypes(['number']).columns,
+               fontsize=14)
+    plt.yticks(range(data_frame.select_dtypes(['number']).shape[1]),
+               data_frame.select_dtypes(['number']).columns,
+               fontsize=14)
+
+    for i in range(len(corr.columns)):
+        for j in range(len(corr.columns)):
+            ax.text(j, i, round(corr.to_numpy()[i, j], 3),
+                    ha="center", va="center", color="black")
+    plt.title('Матрица корреляций', fontsize=16)
+    plt.show()
+    plt.savefig("../output/corr_matrix.png")
