@@ -143,3 +143,27 @@ def corr_matrix(data_frame):
     plt.title('Матрица корреляций', fontsize=16)
     plt.show()
     plt.savefig("../output/corr_matrix.png")
+
+
+def memory_to_number_param(memory_type, number_param, data_frame):
+    """
+    Функция для построения графика среднего в зависимости от памяти
+
+    :param memory_type: Тип памяти Ram или Memory
+    :param number_param: Количественный параметр Weight, Rating или Price_euros
+    :param data_frame: Таблица
+    :return: График на экран, график в output
+    """
+    df_graph = data_frame.groupby(memory_type, as_index=False)[number_param].mean()
+
+    plt.figure(figsize=(15, 8))
+    plt.plot(df_graph[memory_type], df_graph[number_param], "-o")
+
+    plt.xlabel(memory_type, fontsize=16)
+    plt.xticks(fontsize=14)
+    plt.ylabel(number_param, fontsize=16)
+    plt.yticks(fontsize=14)
+
+    plt.title(f"Средний {number_param} от {memory_type}", fontsize=18)
+    plt.savefig("../output/memory_to_number_param.png")
+    plt.show()
