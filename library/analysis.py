@@ -74,3 +74,27 @@ def average_bar(key, number, data_frame):
     plt.title(f"Average {number} of {key}", fontsize=18)
     plt.savefig("../output/average_bar.png")
     plt.show()
+
+
+def prices_of_company(company, data_frame):
+    """
+    Функция для вычисления средней цены
+    разных моделей ноутбуков компании
+
+    :param company: Название компании
+    :param data_frame: Таблица
+    :return: График на экран, график в output
+    """
+    df_sorted = data_frame.loc[data_frame["Company"] == company]
+    df_graph = df_sorted.groupby("Product", as_index=False)["Price_euros"].mean()
+
+    plt.figure(figsize=(15, 8))
+    plt.bar(df_graph["Product"], df_graph["Price_euros"], color="r")
+
+    plt.xlabel("Product", fontsize=16)
+    plt.xticks(rotation=90)
+    plt.ylabel("Average price", fontsize=16)
+    plt.title(company, fontsize=18)
+
+    plt.savefig("../output/price_of_company.png")
+    plt.show()
