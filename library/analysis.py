@@ -3,6 +3,19 @@
 """
 import matplotlib.pyplot as plt
 
+top_types = ["Rating", "Price_euros"]
+count_of_laptops_parameters = ['Company', 'TypeName', 'Ram', 'Memory', 'Gpu_Intel', 'OpSys', 'Weight',
+                               'Rating', 'Price_euros']
+key = ['Company', 'Product', 'TypeName', 'ScreenResolution', 'Cpu', 'Gpu', 'Gpu_Intel', 'OpSys']
+
+number = ['Ram', 'Memory', 'Weight', 'Rating', 'Price_euros']
+
+companies = ['Vero', 'Samsung', 'Xiaomi', 'Apple', 'Mediacom', 'Asus', 'Lenovo', 'Acer', 'MSI', 'HP', 'LG', 'Microsoft',
+             'Chuwi', 'Google', 'Fujitsu', 'Dell', 'Huawei', 'Razer', 'Toshiba']
+
+memory_type = ['Ram', 'Memory']
+
+number_memory = ['Weight', 'Rating', 'Price_euros']
 
 def top_by_rating(count, data_frame, reverse=False):
     """
@@ -16,7 +29,7 @@ def top_by_rating(count, data_frame, reverse=False):
     df_sorted = data_frame.sort_values(["Rating", "Company"],
                                        ascending=[reverse, True]).head(count)
 
-    df_sorted = df_sorted[["Company", "TypeName", "Memory", "OpSys", "Rating"]]
+    df_sorted = df_sorted[["Company", "Product", "TypeName", "Memory", "OpSys", "Rating"]]
     out = []
     sorted_values_list = df_sorted.values.tolist()
     keys = df_sorted.keys()
@@ -40,7 +53,7 @@ def laptop_by_price(count, data_frame, reverse=False):
     """
     df_sorted = data_frame.sort_values(["Price_euros", "Company"],
                                        ascending=[reverse, True]).head(count)
-    df_sorted = df_sorted[["Company", "TypeName", "Memory", "OpSys", "Rating", "Price_euros"]]
+    df_sorted = df_sorted[["Company", "Product", "TypeName", "Memory", "OpSys", "Rating", "Price_euros"]]
 
     out = []
     sorted_values_list = df_sorted.values.tolist()
